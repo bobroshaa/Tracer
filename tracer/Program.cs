@@ -12,6 +12,8 @@ namespace tracer
             TraceResult res = tracer.GetTraceResult();
             JsonConvertation jsonConvertation = new JsonConvertation();
             Console.WriteLine(jsonConvertation.SerializeToJson(res));
+            XmlConvertation xmlConvertation = new XmlConvertation();
+            xmlConvertation.SerializeToXml(res, "file.xml");
         }
     }
 }

@@ -1,11 +1,17 @@
-﻿namespace tracer;
+﻿using System.Xml.Schema;
+using System.Xml.Serialization;
+
+namespace tracer;
 
 public class ThreadInfo
 {
-    public int ThreadIndex { get; set; }
+    [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
+    public int ThreadIndex { get;  }
+    [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
     public int PerformanceTime { get; set; }
-    public List<MethodInfo> methods { get; set; }
+    public List<MethodInfo> methods { get; }
 
+    public ThreadInfo(){ }
     public ThreadInfo(int threadIndex)
     {
         ThreadIndex = threadIndex;

@@ -1,12 +1,17 @@
 ﻿using System.Diagnostics;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 using Newtonsoft.Json;
 
 namespace tracer;
 
 public class MethodInfo
 {
+    [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
     public string MethodName { get; set; }
+    [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
     public string ClassName { get; set; }
+    [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
     public int PerformanceTime{ get; set; }
     [JsonProperty(NullValueHandling=NullValueHandling.Ignore)]
     public List<MethodInfo> ListOfMethods{ get; set; }
