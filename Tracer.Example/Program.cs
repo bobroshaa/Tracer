@@ -13,9 +13,20 @@ namespace Tracer.Example
             foo.M0();
             TraceResult res = tracer.GetTraceResult();
             JsonConvertation jsonConvertation = new JsonConvertation();
-            Console.WriteLine(jsonConvertation.Serialize(res));
+            string jsonRes = jsonConvertation.Serialize(res);
             XmlConvertation xmlConvertation = new XmlConvertation();
-            Console.WriteLine(xmlConvertation.Serialize(res));
+            string xmlRes = xmlConvertation.Serialize(res);
+            IOutputSerialization output = new OutputSerialization();
+            using (Stream stream = new FileStream("1.json", FileMode.OpenOrCreate))
+            {
+                output.Output(jsonRes, stream);
+            }
+            using (Stream stream = new FileStream("1.xml", FileMode.OpenOrCreate))
+            {
+                output.Output(xmlRes, stream);
+            }
+            output.Output(jsonRes, Console.OpenStandardOutput());
+            output.Output(xmlRes, Console.OpenStandardOutput());
         }
     }
 }

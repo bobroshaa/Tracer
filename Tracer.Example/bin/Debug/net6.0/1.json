@@ -1,0 +1,20 @@
+{
+  "Threads": [
+    {
+      "ThreadIndex": 1,
+      "PerformanceTime": 329,
+      "methods": [
+        {
+          "MethodName": "M1",
+          "ClassName": "Foo",
+          "PerformanceTime": 115
+        },
+        {
+          "MethodName": "M2",
+          "ClassName": "Foo",
+          "PerformanceTime": 214
+        }
+      ]
+    }
+  ]
+}
