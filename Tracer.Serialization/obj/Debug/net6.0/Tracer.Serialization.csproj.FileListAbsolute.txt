@@ -1,0 +1,15 @@
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\bin\Debug\net6.0\Tracer.Serialization.deps.json
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\bin\Debug\net6.0\Tracer.Serialization.dll
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\bin\Debug\net6.0\Tracer.Serialization.pdb
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\bin\Debug\net6.0\Tracer.Core.dll
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\bin\Debug\net6.0\Tracer.Core.pdb
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\obj\Debug\net6.0\Tracer.Serialization.csproj.AssemblyReference.cache
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\obj\Debug\net6.0\Tracer.Serialization.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\obj\Debug\net6.0\Tracer.Serialization.AssemblyInfoInputs.cache
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\obj\Debug\net6.0\Tracer.Serialization.AssemblyInfo.cs
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\obj\Debug\net6.0\Tracer.Serialization.csproj.CoreCompileInputs.cache
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\obj\Debug\net6.0\Tracer.Serialization.csproj.CopyComplete
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\obj\Debug\net6.0\Tracer.Serialization.dll
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\obj\Debug\net6.0\refint\Tracer.Serialization.dll
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\obj\Debug\net6.0\Tracer.Serialization.pdb
+C:\Users\bobro\source\repos\tracer\SPP_Laba1\Tracer.Serialization\obj\Debug\net6.0\ref\Tracer.Serialization.dll
