@@ -5,10 +5,8 @@ namespace tracer
     public class Tracer : ITracer
     {
         private TraceResult result;
-        private ConcurrentDictionary<int, List<MethodInfo>> _methodsDictionary = new ConcurrentDictionary<int, List<MethodInfo>>();
-        private ConcurrentDictionary<int, ThreadInfo> _threadsDictionary = new ConcurrentDictionary<int, ThreadInfo>();
+        private ConcurrentDictionary<int, ThreadInfo> _methodsDictionary = new ConcurrentDictionary<int, ThreadInfo>();
         private ConcurrentStack<MethodInfo> _stackMethodsInfo = new ConcurrentStack<MethodInfo>();
-        private ConcurrentStack<ThreadInfo> _stackThreadsInfo = new ConcurrentStack<ThreadInfo>();
 
         TraceResult ITracer.GetTraceResult()
         {
@@ -26,11 +24,7 @@ namespace tracer
             Thread thread = Thread.CurrentThread;
             if (!_methodsDictionary.ContainsKey(thread.ManagedThreadId))
             {
-                _methodsDictionary.TryAdd(thread.ManagedThreadId, new List<MethodInfo>());
-            }
-            if (!_threadsDictionary.ContainsKey(thread.ManagedThreadId))
-            {
-                _threadsDictionary.TryAdd(thread.ManagedThreadId, new ThreadInfo());
+                _methodsDictionary.TryAdd(thread.ManagedThreadId, new ThreadInfo(thread.ManagedThreadId));
             }
         }
 
@@ -41,9 +35,7 @@ namespace tracer
             if (_stackMethodsInfo.IsEmpty)
             {
                 Thread thread = Thread.CurrentThread;
-                _methodsDictionary.TryGetValue(thread.ManagedThreadId, out List<MethodInfo> methods);
-                methods.Add(method);
-                _threadsDictionary.TryGetValue(thread.ManagedThreadId, out ThreadInfo currentThread);
+                _methodsDictionary.TryGetValue(thread.ManagedThreadId, out ThreadInfo currentThread);
                 currentThread.methods.Add(method);
             }
             else

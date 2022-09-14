@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bobro\\source\\repos\\tracer\\tracer\\tracer.csproj": {}
+    "C:\\Users\\bobro\\source\\repos\\tracer\\SPP_Laba1\\tracer\\tracer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bobro\\source\\repos\\tracer\\tracer\\tracer.csproj": {
+    "C:\\Users\\bobro\\source\\repos\\tracer\\SPP_Laba1\\tracer\\tracer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bobro\\source\\repos\\tracer\\tracer\\tracer.csproj",
+        "projectUniqueName": "C:\\Users\\bobro\\source\\repos\\tracer\\SPP_Laba1\\tracer\\tracer.csproj",
         "projectName": "tracer",
-        "projectPath": "C:\\Users\\bobro\\source\\repos\\tracer\\tracer\\tracer.csproj",
+        "projectPath": "C:\\Users\\bobro\\source\\repos\\tracer\\SPP_Laba1\\tracer\\tracer.csproj",
         "packagesPath": "C:\\Users\\bobro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bobro\\source\\repos\\tracer\\tracer\\obj\\",
+        "outputPath": "C:\\Users\\bobro\\source\\repos\\tracer\\SPP_Laba1\\tracer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -43,6 +43,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2-beta2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

@@ -4,10 +4,17 @@ namespace tracer
 {
     public class TraceResult
     {
-        public Dictionary<string, ThreadInfo> Info;
-        public TraceResult(ConcurrentDictionary<int, List<MethodInfo>> dictionary)
+        public Dictionary<string, List<ThreadInfo>> Info { get;}
+        public TraceResult(ConcurrentDictionary<int, ThreadInfo> dictionary)
         {
-            dictionary.TryGetValue(1, out Info);
+            Info = new Dictionary<string, List<ThreadInfo>>();
+            Info.Add("threads", new List<ThreadInfo>());
+            foreach (var thread in dictionary)
+            {
+                dictionary.TryGetValue(thread.Key, out ThreadInfo threadInfo);
+                threadInfo.EndThread();
+                Info["threads"].Add(threadInfo);
+            }
         }
     }
 }

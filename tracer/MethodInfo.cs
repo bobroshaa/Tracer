@@ -1,14 +1,15 @@
-﻿using System.Collections.Concurrent;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace tracer;
 
 public class MethodInfo
 {
-    public string MethodName;
-    public string ClassName;
-    public int PerformanceTime;
-    public List<MethodInfo> ListOfMethods;
+    public string MethodName { get; set; }
+    public string ClassName { get; set; }
+    public int PerformanceTime{ get; set; }
+    [JsonProperty(NullValueHandling=NullValueHandling.Ignore)]
+    public List<MethodInfo> ListOfMethods{ get; set; }
     private Stopwatch _stopWatch;
 
     public MethodInfo()
