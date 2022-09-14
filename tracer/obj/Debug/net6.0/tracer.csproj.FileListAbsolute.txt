@@ -1,0 +1,15 @@
+C:\Users\bobro\source\repos\tracer\tracer\obj\Debug\net6.0\tracer.csproj.AssemblyReference.cache
+C:\Users\bobro\source\repos\tracer\tracer\obj\Debug\net6.0\tracer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bobro\source\repos\tracer\tracer\obj\Debug\net6.0\tracer.AssemblyInfoInputs.cache
+C:\Users\bobro\source\repos\tracer\tracer\obj\Debug\net6.0\tracer.AssemblyInfo.cs
+C:\Users\bobro\source\repos\tracer\tracer\obj\Debug\net6.0\tracer.csproj.CoreCompileInputs.cache
+C:\Users\bobro\source\repos\tracer\tracer\bin\Debug\net6.0\tracer.exe
+C:\Users\bobro\source\repos\tracer\tracer\bin\Debug\net6.0\tracer.deps.json
+C:\Users\bobro\source\repos\tracer\tracer\bin\Debug\net6.0\tracer.runtimeconfig.json
+C:\Users\bobro\source\repos\tracer\tracer\bin\Debug\net6.0\tracer.dll
+C:\Users\bobro\source\repos\tracer\tracer\bin\Debug\net6.0\tracer.pdb
+C:\Users\bobro\source\repos\tracer\tracer\obj\Debug\net6.0\tracer.dll
+C:\Users\bobro\source\repos\tracer\tracer\obj\Debug\net6.0\refint\tracer.dll
+C:\Users\bobro\source\repos\tracer\tracer\obj\Debug\net6.0\tracer.pdb
+C:\Users\bobro\source\repos\tracer\tracer\obj\Debug\net6.0\tracer.genruntimeconfig.cache
+C:\Users\bobro\source\repos\tracer\tracer\obj\Debug\net6.0\ref\tracer.dll
