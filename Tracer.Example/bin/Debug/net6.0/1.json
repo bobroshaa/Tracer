@@ -2,33 +2,33 @@
   "Threads": [
     {
       "ThreadIndex": 1,
-      "PerformanceTime": 318,
+      "PerformanceTime": "305ms",
       "methods": [
         {
           "MethodName": "M1",
           "ClassName": "Foo",
-          "PerformanceTime": 105
+          "PerformanceTime": "103ms"
         },
         {
           "MethodName": "M2",
           "ClassName": "Foo",
-          "PerformanceTime": 213
+          "PerformanceTime": "202ms"
         }
       ]
     },
     {
       "ThreadIndex": 10,
-      "PerformanceTime": 310,
+      "PerformanceTime": "322ms",
       "methods": [
         {
           "MethodName": "M1",
           "ClassName": "Foo",
-          "PerformanceTime": 107
+          "PerformanceTime": "107ms"
         },
         {
           "MethodName": "M2",
           "ClassName": "Foo",
-          "PerformanceTime": 203
+          "PerformanceTime": "215ms"
         }
       ]
     }

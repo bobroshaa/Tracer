@@ -8,7 +8,7 @@ public class ThreadInfo
     [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
     public int ThreadIndex { get; set; }
     [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
-    public int PerformanceTime { get; set; }
+    public string PerformanceTime { get; set; }
     public List<MethodInfo> methods { get; set; }
 
     public ThreadInfo(){ }
@@ -19,9 +19,12 @@ public class ThreadInfo
     }
     public void EndThread()
     {
+        int temp = 0;
         foreach (var method in methods)
         {
-            PerformanceTime += method.PerformanceTime;
+            temp += Convert.ToInt32(method.PerformanceTime.Substring(0, method.PerformanceTime.Length - 2));
         }
+
+        PerformanceTime = temp + "ms";
     }
 }

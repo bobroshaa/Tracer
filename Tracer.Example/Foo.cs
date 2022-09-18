@@ -20,7 +20,6 @@ namespace Tracer.Example
         {
             _tracer.StartTrace();
             Thread.Sleep(100);
-            Console.WriteLine("M1");
             _tracer.StopTrace();
         }
 
@@ -28,7 +27,6 @@ namespace Tracer.Example
         {
             _tracer.StartTrace();
             Thread.Sleep(200);
-            Console.WriteLine("M2");
             _tracer.StopTrace();
         }
 

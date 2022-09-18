@@ -12,7 +12,7 @@ public class MethodInfo
     [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
     public string ClassName { get; set; }
     [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
-    public int PerformanceTime{ get; set; }
+    public string PerformanceTime{ get; set; }
     [JsonProperty(NullValueHandling=NullValueHandling.Ignore)]
     public List<MethodInfo> ListOfMethods{ get; set; }
     private Stopwatch _stopWatch;
@@ -26,7 +26,7 @@ public class MethodInfo
     public void EndMethod()
     {
         _stopWatch.Stop();
-        PerformanceTime = _stopWatch.Elapsed.Milliseconds;
+        PerformanceTime = _stopWatch.Elapsed.Milliseconds + "ms";
     }
     
 }

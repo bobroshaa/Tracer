@@ -5,9 +5,14 @@ namespace Tracer.Core
     public class Tracer : ITracer
     {
         private TraceResult result;
-        private ConcurrentDictionary<int, ThreadInfo> _methodsDictionary = new ConcurrentDictionary<int, ThreadInfo>();
-        private ConcurrentDictionary<int, Stack<MethodInfo>> _stackMethodsInfo = new ConcurrentDictionary<int, Stack<MethodInfo>>();
+        private ConcurrentDictionary<int, ThreadInfo> _methodsDictionary;
+        private Stack<MethodInfo> _stackMethodsInfo;
 
+        public Tracer()
+        {
+            _methodsDictionary = new ConcurrentDictionary<int, ThreadInfo>();
+        }
+        
         TraceResult ITracer.GetTraceResult()
         {
             var threads = new List<ThreadInfo>();
@@ -33,35 +38,31 @@ namespace Tracer.Core
                 {
                 }
             }
-            if (! _stackMethodsInfo.ContainsKey(thread.ManagedThreadId))
-            {
-                while (! _stackMethodsInfo.TryAdd(thread.ManagedThreadId, new Stack<MethodInfo>()))
-                {
-                }
-            }
-            _stackMethodsInfo[thread.ManagedThreadId].Push(method);
+
+            if (_stackMethodsInfo == null)
+                _stackMethodsInfo = new Stack<MethodInfo>();
+            _stackMethodsInfo.Push(method);
         }
 
         void ITracer.StopTrace()
         {
-            Console.WriteLine("stop method");
             Thread thread = Thread.CurrentThread;
-            MethodInfo method = _stackMethodsInfo[thread.ManagedThreadId].Pop();
+            MethodInfo method = _stackMethodsInfo.Pop();
             method.EndMethod();
-            if (_stackMethodsInfo[thread.ManagedThreadId].Count == 0)
+            if (_stackMethodsInfo.Count == 0)
             {
                 ThreadInfo currentThread = _methodsDictionary[thread.ManagedThreadId];
                 currentThread.methods.Add(method);
             }
             else
             {
-                MethodInfo prevResult = _stackMethodsInfo[thread.ManagedThreadId].Pop();
+                MethodInfo prevResult = _stackMethodsInfo.Pop();
                 if (prevResult.ListOfMethods == null)
                 {
                     prevResult.ListOfMethods = new List<MethodInfo>();
                 }
                 prevResult.ListOfMethods.Add(method);
-                _stackMethodsInfo[thread.ManagedThreadId].Push(prevResult);
+                _stackMethodsInfo.Push(prevResult);
             }
         }
     }
