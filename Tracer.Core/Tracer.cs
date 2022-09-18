@@ -6,12 +6,18 @@ namespace Tracer.Core
     {
         private TraceResult result;
         private ConcurrentDictionary<int, ThreadInfo> _methodsDictionary = new ConcurrentDictionary<int, ThreadInfo>();
-        private ConcurrentStack<MethodInfo> _stackMethodsInfo = new ConcurrentStack<MethodInfo>();
+        private ConcurrentDictionary<int, Stack<MethodInfo>> _stackMethodsInfo = new ConcurrentDictionary<int, Stack<MethodInfo>>();
 
         TraceResult ITracer.GetTraceResult()
         {
-            result = new TraceResult(_methodsDictionary);
-            return result;
+            var threads = new List<ThreadInfo>();
+            foreach (var thread in _methodsDictionary)
+            {
+                ThreadInfo threadInfo = _methodsDictionary[thread.Key];
+                threadInfo.EndThread();
+                threads.Add(threadInfo);
+            }
+            return new TraceResult(threads);
         }
 
         void ITracer.StartTrace()
@@ -20,29 +26,42 @@ namespace Tracer.Core
             StackTrace stackTrace = new StackTrace(); 
             method.MethodName = stackTrace.GetFrame(1).GetMethod().Name;
             method.ClassName = stackTrace.GetFrame(1).GetMethod().DeclaringType.Name;
-            _stackMethodsInfo.Push(method);
             Thread thread = Thread.CurrentThread;
             if (!_methodsDictionary.ContainsKey(thread.ManagedThreadId))
             {
-                _methodsDictionary.TryAdd(thread.ManagedThreadId, new ThreadInfo(thread.ManagedThreadId));
+                while (!_methodsDictionary.TryAdd(thread.ManagedThreadId, new ThreadInfo(thread.ManagedThreadId)))
+                {
+                }
             }
+            if (! _stackMethodsInfo.ContainsKey(thread.ManagedThreadId))
+            {
+                while (! _stackMethodsInfo.TryAdd(thread.ManagedThreadId, new Stack<MethodInfo>()))
+                {
+                }
+            }
+            _stackMethodsInfo[thread.ManagedThreadId].Push(method);
         }
 
         void ITracer.StopTrace()
         {
-            _stackMethodsInfo.TryPop(out MethodInfo method);
+            Console.WriteLine("stop method");
+            Thread thread = Thread.CurrentThread;
+            MethodInfo method = _stackMethodsInfo[thread.ManagedThreadId].Pop();
             method.EndMethod();
-            if (_stackMethodsInfo.IsEmpty)
+            if (_stackMethodsInfo[thread.ManagedThreadId].Count == 0)
             {
-                Thread thread = Thread.CurrentThread;
-                _methodsDictionary.TryGetValue(thread.ManagedThreadId, out ThreadInfo currentThread);
+                ThreadInfo currentThread = _methodsDictionary[thread.ManagedThreadId];
                 currentThread.methods.Add(method);
             }
             else
             {
-                _stackMethodsInfo.TryPop(out MethodInfo prevResult);
+                MethodInfo prevResult = _stackMethodsInfo[thread.ManagedThreadId].Pop();
+                if (prevResult.ListOfMethods == null)
+                {
+                    prevResult.ListOfMethods = new List<MethodInfo>();
+                }
                 prevResult.ListOfMethods.Add(method);
-                _stackMethodsInfo.Push(prevResult);
+                _stackMethodsInfo[thread.ManagedThreadId].Push(prevResult);
             }
         }
     }

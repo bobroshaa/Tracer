@@ -2,14 +2,14 @@
 using System.Xml.Serialization;
 
 namespace Tracer.Core;
-
+[Serializable]
 public class ThreadInfo
 {
     [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
-    public int ThreadIndex { get;  }
+    public int ThreadIndex { get; set; }
     [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
     public int PerformanceTime { get; set; }
-    public List<MethodInfo> methods { get; }
+    public List<MethodInfo> methods { get; set; }
 
     public ThreadInfo(){ }
     public ThreadInfo(int threadIndex)

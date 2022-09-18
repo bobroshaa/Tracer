@@ -5,7 +5,7 @@ namespace Tracer.Example
     {
         private ITracer _tracer;
 
-        internal Foo(ITracer tracer)
+        public Foo(ITracer tracer)
         {
             _tracer = tracer;
         }
@@ -15,18 +15,20 @@ namespace Tracer.Example
             M1();
             M2();
         }
-    
+
         private void M1()
         {
             _tracer.StartTrace();
             Thread.Sleep(100);
+            Console.WriteLine("M1");
             _tracer.StopTrace();
         }
-    
+
         private void M2()
         {
             _tracer.StartTrace();
             Thread.Sleep(200);
+            Console.WriteLine("M2");
             _tracer.StopTrace();
         }
 

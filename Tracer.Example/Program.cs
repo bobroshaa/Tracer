@@ -11,6 +11,9 @@ namespace Tracer.Example
             ITracer tracer = new Core.Tracer();
             Foo foo = new Foo(tracer);
             foo.M0();
+            Thread thread = new Thread(foo.M0);
+            thread.Start();
+            thread.Join();
             TraceResult res = tracer.GetTraceResult();
             JsonConvertation jsonConvertation = new JsonConvertation();
             string jsonRes = jsonConvertation.Serialize(res);

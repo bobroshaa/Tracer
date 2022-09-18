@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 using Newtonsoft.Json;
 
 namespace Tracer.Core;
-
+[Serializable]
 public class MethodInfo
 {
     [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
