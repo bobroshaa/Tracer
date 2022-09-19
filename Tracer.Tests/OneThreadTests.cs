@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic.CompilerServices;
 using Tracer.Core;
 using Tracer.Example;
 
@@ -31,16 +32,52 @@ public class Tests
     }
     
     [Test]
-    public void ClassName()
+    public void ClassNameM1()
     {
         var className = res.Threads[0].methods[0].ClassName;
         Assert.That("Foo", Is.EqualTo(className));
     }
     
     [Test]
-    public void MethodName()
+    public void ClassNameM2()
+    {
+        var className = res.Threads[0].methods[1].ClassName;
+        Assert.That("Foo", Is.EqualTo(className));
+    }
+    
+    [Test]
+    public void MethodNameM1()
     {
         var className = res.Threads[0].methods[0].MethodName;
         Assert.That("M1", Is.EqualTo(className));
+    }
+    
+    [Test]
+    public void MethodNameM2()
+    {
+        var className = res.Threads[0].methods[1].MethodName;
+        Assert.That("M2", Is.EqualTo(className));
+    }
+    
+    [Test]
+    public void PerformanceTimeM1()
+        {
+            string strTime = res.Threads[0].methods[0].PerformanceTime;
+            int time = Convert.ToInt32(strTime.Substring(0, strTime.Length - 2));
+            Assert.That(time, Is.GreaterThanOrEqualTo(100));
+        }
+    [Test]
+    public void PerformanceTimeM2()
+    {
+        string strTime = res.Threads[0].methods[1].PerformanceTime;
+        int time = Convert.ToInt32(strTime.Substring(0, strTime.Length - 2));
+        Assert.That(time, Is.GreaterThanOrEqualTo(200));
+    }
+    [Test]
+    public void PerformanceTimeThread()
+    {
+        string strTime = res.Threads[0].PerformanceTime;
+        int time = Convert.ToInt32(strTime.Substring(0, strTime.Length - 2));
+        Assert.That(time, Is.GreaterThanOrEqualTo(300));
     }
 }
