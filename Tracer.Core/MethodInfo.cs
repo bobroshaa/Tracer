@@ -8,9 +8,9 @@ namespace Tracer.Core;
 public class MethodInfo
 {
     [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
-    public string MethodName { get; set; }
+    public string MethodName { get; }
     [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
-    public string ClassName { get; set; }
+    public string ClassName { get; }
     [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
     public string PerformanceTime{ get; set; }
     [JsonProperty(NullValueHandling=NullValueHandling.Ignore)]
@@ -19,8 +19,14 @@ public class MethodInfo
 
     public MethodInfo()
     {
+    }
+
+    public MethodInfo(string methodName, string className)
+    {
         _stopWatch = new Stopwatch();
         _stopWatch.Start();
+        ClassName = className;
+        MethodName = methodName;
     }
 
     public void EndMethod()

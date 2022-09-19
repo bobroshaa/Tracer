@@ -27,7 +27,7 @@ public class Tests
     public void NumberOfMethods()
     {
         var count = res.Threads[0].methods.Count;
-        Assert.That(1, Is.EqualTo(count));
+        Assert.That(2, Is.EqualTo(count));
     }
     
     [Test]
@@ -41,6 +41,6 @@ public class Tests
     public void MethodName()
     {
         var className = res.Threads[0].methods[0].MethodName;
-        Assert.That("M0", Is.EqualTo(className));
+        Assert.That("M1", Is.EqualTo(className));
     }
 }

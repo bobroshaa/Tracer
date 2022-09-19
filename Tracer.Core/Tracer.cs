@@ -27,10 +27,8 @@ namespace Tracer.Core
 
         void ITracer.StartTrace()
         {
-            MethodInfo method = new MethodInfo();
-            StackTrace stackTrace = new StackTrace(); 
-            method.MethodName = stackTrace.GetFrame(1).GetMethod().Name;
-            method.ClassName = stackTrace.GetFrame(1).GetMethod().DeclaringType.Name;
+            StackTrace stackTrace = new StackTrace();
+            MethodInfo method = new MethodInfo(stackTrace.GetFrame(1).GetMethod().Name, stackTrace.GetFrame(1).GetMethod().DeclaringType.Name);
             Thread thread = Thread.CurrentThread;
             if (!_methodsDictionary.ContainsKey(thread.ManagedThreadId))
             {

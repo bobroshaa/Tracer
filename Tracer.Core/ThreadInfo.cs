@@ -6,7 +6,7 @@ namespace Tracer.Core;
 public class ThreadInfo
 {
     [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
-    public int ThreadIndex { get; set; }
+    public int ThreadIndex { get; }
     [XmlAttribute(Form = XmlSchemaForm.Unqualified)]
     public string PerformanceTime { get; set; }
     public List<MethodInfo> methods { get; set; }
