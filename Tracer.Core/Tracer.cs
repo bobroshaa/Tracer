@@ -1,10 +1,11 @@
 ﻿using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.Reflection;
+
 namespace Tracer.Core
 {
     public class Tracer : ITracer
     {
-        private TraceResult result;
         private ConcurrentDictionary<int, ThreadInfo> _methodsDictionary;
         private Stack<MethodInfo> _stackMethodsInfo;
 
@@ -16,30 +17,25 @@ namespace Tracer.Core
         TraceResult ITracer.GetTraceResult()
         {
             var threads = new List<ThreadInfo>();
-            foreach (var thread in _methodsDictionary)
+            foreach (var thread in _methodsDictionary.Values)
             {
-                ThreadInfo threadInfo = _methodsDictionary[thread.Key];
-                threadInfo.EndThread();
-                threads.Add(threadInfo);
+                thread.EndThread();
+                threads.Add(thread);
             }
             return new TraceResult(threads);
         }
 
         void ITracer.StartTrace()
         {
-            StackTrace stackTrace = new StackTrace();
-            MethodInfo method = new MethodInfo(stackTrace.GetFrame(1).GetMethod().Name, stackTrace.GetFrame(1).GetMethod().DeclaringType.Name);
+            var stackTrace = new StackTrace();
+            var method = stackTrace.GetFrame(1)!.GetMethod();
+            var methodInfo = new MethodInfo(method.Name, method.DeclaringType.Name);
             Thread thread = Thread.CurrentThread;
-            if (!_methodsDictionary.ContainsKey(thread.ManagedThreadId))
-            {
-                while (!_methodsDictionary.TryAdd(thread.ManagedThreadId, new ThreadInfo(thread.ManagedThreadId)))
-                {
-                }
-            }
+            _methodsDictionary.TryAdd(thread.ManagedThreadId, new ThreadInfo(thread.ManagedThreadId));
 
             if (_stackMethodsInfo == null)
                 _stackMethodsInfo = new Stack<MethodInfo>();
-            _stackMethodsInfo.Push(method);
+            _stackMethodsInfo.Push(methodInfo);
         }
 
         void ITracer.StopTrace()
